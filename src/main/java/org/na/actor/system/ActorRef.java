@@ -8,7 +8,7 @@ public class ActorRef {
     ActorSystem actorSystem;
     Mailbox mailbox = new Mailbox(this);
 
-    public ActorRef(Actor actor, ActorSystem actorSystem) {
+    ActorRef(Actor actor, ActorSystem actorSystem) {
         this.actor = actor;
         this.actorSystem = actorSystem;
     }
@@ -17,7 +17,7 @@ public class ActorRef {
         tell(actorSystem.create(new NullActor()), message);
     }
 
-    static class NullActor implements Actor{
+    private static class NullActor implements Actor{
         @Override
         public void receive(ActorRef self, ActorRef sender, Object message) {}
     }
@@ -29,7 +29,7 @@ public class ActorRef {
         return f;
     }
 
-    static class AskActor implements Actor {
+    private static class AskActor implements Actor {
 
         CompletableFuture<Object> future = new CompletableFuture<>();
 

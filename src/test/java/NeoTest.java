@@ -20,8 +20,5 @@ public class NeoTest {
                     return smith.ask(new StartShooting());
                 }).collect(Collectors.toList()).toArray(new CompletableFuture[0])
         ).get();
-
-//        CompletableFuture<Object> response = smith.ask(new StartShooting());
-//        System.out.println(response.get());
     }
 }

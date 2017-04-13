@@ -5,12 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SmithActor implements Actor {
     String name;
-    ActorRef pong;
+    ActorRef neo;
     ActorRef initiator;
 
-    public SmithActor(String name, ActorRef pong) {
+    public SmithActor(String name, ActorRef neo) {
         this.name = name;
-        this.pong = pong;
+        this.neo = neo;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class SmithActor implements Actor {
         if(message instanceof StartShooting){
             initiator = sender;
             System.out.println("Start");
-            pong.tell(self, new Bullet(name, 0));
+            neo.tell(self, new Bullet(name, 0));
         } else if(message instanceof Bullet){
             if(ThreadLocalRandom.current().nextInt(50) == 0){
                 initiator.tell(self, message);
